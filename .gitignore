@@ -1,6 +1,0 @@
-# Ignore VSCode settings
-.vscode*
-
-# Ensure nested `.github` directory is tracked (repository itself is named `.github`).
-!/.github/
-!/.github/**

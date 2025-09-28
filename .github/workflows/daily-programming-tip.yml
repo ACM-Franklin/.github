@@ -9,6 +9,8 @@ on:
 jobs:
   post-programming-tip:
     runs-on: ubuntu-latest
+    env:
+      DISCUSSION_CATEGORY_ID: ${{ vars.DISCUSSION_CATEGORY_ID }}
     
     steps:
     - name: Checkout repository
@@ -23,11 +25,18 @@ jobs:
       run: |
         pip install requests groq
         
+    - name: Verify discussion category variable
+      run: |
+        if [ -z "${DISCUSSION_CATEGORY_ID}" ]; then
+          echo "DISCUSSION_CATEGORY_ID repository variable is empty" >&2
+          exit 1
+        fi
+        echo "DISCUSSION_CATEGORY_ID length: ${#DISCUSSION_CATEGORY_ID}"
+
     - name: Generate and Post Programming Tip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         REPO_NAME: ${{ github.repository }}
-        DISCUSSION_CATEGORY_ID: ${{ vars.DISCUSSION_CATEGORY_ID }}
       run: |
         python ./scripts/generate_tip.py

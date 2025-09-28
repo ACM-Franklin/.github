@@ -12,7 +12,7 @@ from groq import Groq
 
 
 GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql"
-MODEL_NAME = os.environ.get("GROQ_MODEL", "groq/compound")
+MODEL_NAME = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 
 
 def require_env(var_name: str) -> str:

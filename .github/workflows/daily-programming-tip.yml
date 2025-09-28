@@ -30,4 +30,4 @@ jobs:
         REPO_NAME: ${{ github.repository }}
         DISCUSSION_CATEGORY_ID: ${{ secrets.DISCUSSION_CATEGORY_ID }}
       run: |
-        python .github/scripts/generate_tip.py
+        python ./scripts/generate_tip.py
